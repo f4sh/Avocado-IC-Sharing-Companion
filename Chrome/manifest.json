@@ -1,0 +1,36 @@
+{
+    "manifest_version": 3,
+    "name": "Avocado IC Sharing Companion",
+    "version": "2.3",
+    "description": "Boost Star Citizen Issue Council collaboration with easy sharing of insights and markdown readiness for Spectrum chat.",
+    "permissions": [
+        "declarativeContent",
+        "storage"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://issue-council.robertsspaceindustries.com/projects/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "icons/icon-16.png",
+            "48": "icons/icon-48.png"
+        }
+    },
+    "icons": {
+        "16": "icons/icon-16.png",
+        "48": "icons/icon-48.png",
+        "128": "icons/icon-128.png"
+    }
+}

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap');
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInToHalf {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: 'Exo', sans-serif;
+            text-align: center;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            background-color: #1a587d;
+            width: 490px;
+            transition: all 0.3s ease-in-out;
+            box-sizing: border-box;
+            animation: fadeIn 1s ease-out;
+        }
+
+        #searchForm {
+            box-sizing: border-box;
+            width: calc(100% - 40px);
+            max-width: 450px;
+            transition: all 0.3s ease-in-out;
+            padding: 0;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .form-container {
+            background-color: rgba(12, 38, 53, 0.5);
+            padding: 20px;
+            margin-top: 11px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            width: 100%;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+            animation: fadeInToHalf 0.5s ease-out forwards;
+        }
+
+        .search-input {
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        #searchQuery {
+            width: calc(100% - 16px);
+            padding: 18px;
+            border: 1px solid #64c8ff;
+            border-radius: 5px;
+            color: white;
+            font-size: 15px;
+            background-color: #1e3444;
+            margin-bottom: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #searchQuery:focus {
+            transform: scale(1.05);
+            outline: none;
+            border-color: #1d9aeb;
+        }
+
+        .project-selector {
+            margin: 2px auto 10px auto;
+        }
+
+        label {
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #64c8ff;
+            border-radius: 5px;
+            background-color: #1e3444;
+            color: white;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"],
+        button[type="button"] {
+            cursor: pointer;
+            background-color: #1e3444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-top: 10px;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.1s;
+            width: 100%;
+        }
+
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            background-color: #1d9aeb;
+        }
+
+        button[type="submit"]:active,
+        button[type="button"]:active {
+            background-color: #163d59;
+            transform: translateY(2px);
+        }
+
+        h2 {
+            font-size: 20px;
+            margin: 25px auto;
+            color: white;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        h2 span {
+            font-size: 14px
+        }
+
+        p {
+            font-size: 12px;
+            margin: auto 20px;
+            color: white;
+        }
+
+        .footer {
+            background-color: rgba(12, 38, 53, 0.5);
+            color: white;
+            padding: 10px 0;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 10px;
+            opacity: 0.5;
+            width: 100%;
+            animation: fadeInToHalf 0.5s ease-out forwards;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .footer a:hover,
+        .footer a:active {
+            text-decoration: underline;
+            color: white;
+            opacity: 1;
+        }
+
+        .content-container {
+            flex-grow: 1;
+        }
+
+        .dropdowns-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: calc(100% - 40px);
+            margin: 0 20px;
+            gap: 5px;
+            box-sizing: border-box;
+        }
+
+        .dropdowns-container>div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .search-input {
+            margin-top: 0;
+            margin-bottom: 0px;
+            display: flex;
+        }
+
+        .project-selector {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 5px auto 15px auto;
+        }
+
+        .project-selector input[type="radio"] {
+            display: none;
+        }
+
+        .project-selector label {
+            display: inline-block;
+            background-color: transparent;
+            color: white;
+            padding: 8px 50px;
+            margin: 2px;
+            border: 1px solid #64c8ff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s;
+        }
+
+        .project-selector input[type="radio"]:checked+label {
+            background-color: #1d9aeb;
+            color: white;
+        }
+
+        .navigation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 10px;
+            width: 100%;
+        }
+
+        .additional-links {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .navigation-link {
+            cursor: pointer;
+            background-color: transparent;
+            color: #64c8ff;
+            border: 1px solid #64c8ff;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 2px;
+            font-family: 'Exo', sans-serif;
+            font-size: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+        }
+
+        .navigation-link:hover {
+            background-color: #1d9aeb;
+        }
+
+        .navigation-link:active {
+            background-color: #163d59;
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+
+<body>
+    <form id="searchForm">
+        <h2>&#x1F951; Avocado IC Sharing Companion &#x1F951;<br /> <span>Issue Search</span></h2>
+        <div class="search-input">
+            <input type="text" id="searchQuery" placeholder="E.g. When I press the space bar my character disappears"
+                autocomplete="off" required>
+        </div>
+        <div class="project-selector">
+            <input type="radio" id="starCitizen" name="project" value="STAR-CITIZEN" checked>
+            <label for="starCitizen">Star Citizen</label>
+            <input type="radio" id="launcher" name="project" value="LAUNCHER">
+            <label for="launcher">Launcher</label>
+        </div>
+        <div class="form-container">
+            <div class="dropdowns-container">
+                <div>
+                    <label for="status">Status:</label>
+                    <select id="status" required>
+                        <option value="open,confirmed,underinvestigation,fixed,archived">All</option>
+                        <option value="open">Open</option>
+                        <option value="confirmed">Confirmed</option>
+                        <option value="under investigation">Under Investigation</option>
+                        <option value="fixed">Fixed</option>
+                        <option value="archived">Archived</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="severity">Severity:</label>
+                    <select id="severity" required>
+                        <option value="critical,high,medium,low">All</option>
+                        <option value="critical">Critical</option>
+                        <option value="high">Hardly Playable</option>
+                        <option value="medium">Playable</option>
+                        <option value="low">Polish</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="reportDate">Report Date:</label>
+                    <select id="reportDate" required>
+                        <option value="all">All</option>
+                        <option value="last24h">Last 24 hours</option>
+                        <option value="last48h">Last 48 hours</option>
+                        <option value="last72h">Last 72 hours</option>
+                        <option value="last7d">Last 7 days</option>
+                        <option value="last30d">Last 30 days</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit">Search</button>
+        </div>
+        <div class="navigation-container">
+            <a id="createIssue" class="navigation-link" href="">Create New Issue</a>
+            <a id="my-ReportsLink" class="navigation-link" href="">My Reports</a>
+            <a id="my-ContributionsLink" class="navigation-link" href="">My Contributions</a>
+            <a id="followed-IssuesLink" class="navigation-link" href="">Followed Issues</a>
+        </div>
+        <div class="navigation-container additional-links">
+            <a id="patchNotesLink" class="navigation-link"
+                href="https://robertsspaceindustries.com/spectrum/community/SC/forum/190048?page=1&sort=newest"
+                target="_blank">Patch Notes</a>
+            <a id="etfAnnouncementsLink" class="navigation-link"
+                href="https://robertsspaceindustries.com/spectrum/community/AVOCADO/forum/34726?page=1&sort=newest"
+                target="_blank">ETF Announcements</a>
+            <a id="etfChatLink" class="navigation-link"
+                href="https://robertsspaceindustries.com/spectrum/community/AVOCADO/lobby/1355241" target="_blank">ETF
+                Chat</a>
+            <a id="Waka Tracker" class="navigation-link"
+                href="https://robertsspaceindustries.com/spectrum/search?member=Wakapedia-CIG&page=1&q=&range=day&role&scopes=op%2Creply%2Cchat&sort=latest&visibility=nonerased"
+                target="_blank">Waka Tracker</a>
+        </div>
+    </form>
+    <div class="footer">
+    </div>
+    <script src="popup.js"></script>
+</body>
+
+</html>
